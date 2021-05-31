@@ -1,0 +1,33 @@
+# This is a basic workflow to help you get started with Actions
+
+# name: Java CI with Maven
+
+# on:
+#  push:
+#    branches:
+#      - main
+#      - develop
+#  pull_request:
+#    branches:
+#      - main
+#      - develop
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+#jobs:
+  # This workflow contains a single job called "build"
+#  build:
+
+#    runs-on: ubuntu-latest
+
+#    steps:
+#    - name: Checkout
+#      uses: actions/checkout@v2
+#      with:
+#        token: 5d8b972a209756842c6165e9b83eb49fd2798c21
+#        submodules: recursive
+#    - name: Set up JDK 8
+#      uses: actions/setup-java@v1
+#      with:
+#        java-version: 8
+#    - name: Build with Maven
+#      run: mvn -B install --file j2e/pom.xml
+      

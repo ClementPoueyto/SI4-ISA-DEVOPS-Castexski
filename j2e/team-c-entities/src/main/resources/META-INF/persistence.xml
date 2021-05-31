@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.0" xmlns="http://java.sun.com/xml/ns/persistence"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://java.sun.com/xml/ns/persistence
+             http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd">
+
+    <persistence-unit name="castexski_customer_persistence_unit" transaction-type="JTA">
+        <jta-data-source>CastexskiDataSource</jta-data-source>
+
+        <class>fr.unice.polytech.entities.Customer</class>
+        <class>fr.unice.polytech.entities.Employee</class>
+
+        <class>fr.unice.polytech.entities.Pass</class>
+        <class>fr.unice.polytech.entities.Card</class>
+        <class>fr.unice.polytech.entities.Screen</class>
+        <class>fr.unice.polytech.entities.Zone</class>
+        <class>fr.unice.polytech.entities.SkiLift</class>
+        <class>fr.unice.polytech.entities.Gate</class>
+        <class>fr.unice.polytech.entities.Passage</class>
+        <class>fr.unice.polytech.entities.CardItem</class>
+        <class>fr.unice.polytech.entities.PassItem</class>
+        <class>fr.unice.polytech.entities.OrderItem</class>
+        <class>fr.unice.polytech.entities.DateSerializable</class>
+        <class>fr.unice.polytech.entities.AnalyticsPass</class>
+        <class>fr.unice.polytech.entities.AnalyticsVisit</class>
+
+
+        <exclude-unlisted-classes>true</exclude-unlisted-classes>
+        <properties>
+            <property name="openjpa.jdbc.SynchronizeMappings" value="buildSchema(ForeignKeys=true)"/>
+        </properties>
+    </persistence-unit>
+
+</persistence>

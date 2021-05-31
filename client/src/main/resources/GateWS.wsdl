@@ -1,0 +1,143 @@
+<wsdl:definitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://www.polytech.unice.fr/castexski/gate" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:ns1="http://schemas.xmlsoap.org/soap/http" name="GateWebServiceImplService" targetNamespace="http://www.polytech.unice.fr/castexski/gate">
+    <wsdl:types>
+        <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://www.polytech.unice.fr/castexski/gate" attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="http://www.polytech.unice.fr/castexski/gate">
+            <xs:element name="checkCard" type="tns:checkCard"/>
+            <xs:element name="checkCardResponse" type="tns:checkCardResponse"/>
+            <xs:complexType name="checkCard">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="card" type="xs:string"/>
+                    <xs:element minOccurs="0" name="gate" type="xs:string"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="checkCardResponse">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="return" type="tns:passageResponse"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:simpleType name="passageResponse">
+                <xs:restriction base="xs:string">
+                    <xs:enumeration value="UNKNOWN_IDS"/>
+                    <xs:enumeration value="PASS_STARTS_LATER"/>
+                    <xs:enumeration value="PASS_NO_LONGER_VALID"/>
+                    <xs:enumeration value="ZONE_NOT_INCLUDED"/>
+                    <xs:enumeration value="PASS_OK"/>
+                    <xs:enumeration value="PASS_OK_CHILD"/>
+                    <xs:enumeration value="ZONE_CLOSED"/>
+                </xs:restriction>
+            </xs:simpleType>
+            <xs:element name="UnknownGateException" type="tns:UnknownGateException"/>
+            <xs:complexType name="UnknownGateException">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="message" type="xs:string"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:element name="InvalidCardIdException" type="tns:InvalidCardIdException"/>
+            <xs:complexType name="InvalidCardIdException">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="cardId" type="xs:string"/>
+                    <xs:element minOccurs="0" name="name" type="xs:string"/>
+                    <xs:element minOccurs="0" name="message" type="xs:string"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:element name="UnvalidatedPassException" type="tns:UnvalidatedPassException"/>
+            <xs:complexType name="UnvalidatedPassException">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="message" type="xs:string"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:element name="EmptyCartException" type="tns:EmptyCartException"/>
+            <xs:complexType name="EmptyCartException">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="name" type="xs:string"/>
+                    <xs:element minOccurs="0" name="message" type="xs:string"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:element name="PaymentException" type="tns:PaymentException"/>
+            <xs:complexType name="PaymentException">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="name" type="xs:string"/>
+                    <xs:element minOccurs="0" name="amount" type="xs:double"/>
+                    <xs:element minOccurs="0" name="message" type="xs:string"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:element name="UnknownCardException" type="tns:UnknownCardException"/>
+            <xs:complexType name="UnknownCardException">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="id" type="xs:string"/>
+                    <xs:element minOccurs="0" name="message" type="xs:string"/>
+                </xs:sequence>
+            </xs:complexType>
+        </xs:schema>
+    </wsdl:types>
+    <wsdl:message name="UnknownGateException">
+        <wsdl:part element="tns:UnknownGateException" name="UnknownGateException"> </wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="InvalidCardIdException">
+        <wsdl:part element="tns:InvalidCardIdException" name="InvalidCardIdException"> </wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="checkCardResponse">
+        <wsdl:part element="tns:checkCardResponse" name="parameters"> </wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="UnvalidatedPassException">
+        <wsdl:part element="tns:UnvalidatedPassException" name="UnvalidatedPassException"> </wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="EmptyCartException">
+        <wsdl:part element="tns:EmptyCartException" name="EmptyCartException"> </wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="PaymentException">
+        <wsdl:part element="tns:PaymentException" name="PaymentException"> </wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="checkCard">
+        <wsdl:part element="tns:checkCard" name="parameters"> </wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="UnknownCardException">
+        <wsdl:part element="tns:UnknownCardException" name="UnknownCardException"> </wsdl:part>
+    </wsdl:message>
+    <wsdl:portType name="GateWebService">
+        <wsdl:operation name="checkCard">
+            <wsdl:input message="tns:checkCard" name="checkCard"> </wsdl:input>
+            <wsdl:output message="tns:checkCardResponse" name="checkCardResponse"> </wsdl:output>
+            <wsdl:fault message="tns:UnvalidatedPassException" name="UnvalidatedPassException"> </wsdl:fault>
+            <wsdl:fault message="tns:EmptyCartException" name="EmptyCartException"> </wsdl:fault>
+            <wsdl:fault message="tns:UnknownCardException" name="UnknownCardException"> </wsdl:fault>
+            <wsdl:fault message="tns:PaymentException" name="PaymentException"> </wsdl:fault>
+            <wsdl:fault message="tns:UnknownGateException" name="UnknownGateException"> </wsdl:fault>
+            <wsdl:fault message="tns:InvalidCardIdException" name="InvalidCardIdException"> </wsdl:fault>
+        </wsdl:operation>
+    </wsdl:portType>
+    <wsdl:binding name="GateWebServiceImplServiceSoapBinding" type="tns:GateWebService">
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <wsdl:operation name="checkCard">
+            <soap:operation soapAction="" style="document"/>
+            <wsdl:input name="checkCard">
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="checkCardResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="UnvalidatedPassException">
+                <soap:fault name="UnvalidatedPassException" use="literal"/>
+            </wsdl:fault>
+            <wsdl:fault name="EmptyCartException">
+                <soap:fault name="EmptyCartException" use="literal"/>
+            </wsdl:fault>
+            <wsdl:fault name="UnknownCardException">
+                <soap:fault name="UnknownCardException" use="literal"/>
+            </wsdl:fault>
+            <wsdl:fault name="PaymentException">
+                <soap:fault name="PaymentException" use="literal"/>
+            </wsdl:fault>
+            <wsdl:fault name="UnknownGateException">
+                <soap:fault name="UnknownGateException" use="literal"/>
+            </wsdl:fault>
+            <wsdl:fault name="InvalidCardIdException">
+                <soap:fault name="InvalidCardIdException" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:service name="GateWebServiceImplService">
+        <wsdl:port binding="tns:GateWebServiceImplServiceSoapBinding" name="GateWebServiceImplPort">
+            <soap:address location="http://localhost:8080/webservices-module/webservices/GateWS"/>
+        </wsdl:port>
+    </wsdl:service>
+</wsdl:definitions>

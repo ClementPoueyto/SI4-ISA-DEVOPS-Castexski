@@ -1,0 +1,203 @@
+<wsdl:definitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://www.polytech.unice.fr/castexski/customer" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:ns1="http://schemas.xmlsoap.org/soap/http" name="CustomerWebServiceImplService" targetNamespace="http://www.polytech.unice.fr/castexski/customer">
+  <wsdl:types>
+    <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://www.polytech.unice.fr/castexski/customer" attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="http://www.polytech.unice.fr/castexski/customer">
+      <xs:element name="associateCardToCustomer" type="tns:associateCardToCustomer"/>
+      <xs:element name="associateCardToCustomerResponse" type="tns:associateCardToCustomerResponse"/>
+      <xs:element name="registerCustomer" type="tns:registerCustomer"/>
+      <xs:element name="registerCustomerResponse" type="tns:registerCustomerResponse"/>
+      <xs:complexType name="registerCustomer">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="customer_email" type="xs:string"/>
+          <xs:element minOccurs="0" name="customer_name" type="xs:string"/>
+          <xs:element minOccurs="0" name="credit_card" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="registerCustomerResponse">
+        <xs:sequence/>
+      </xs:complexType>
+      <xs:complexType name="associateCardToCustomer">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="customer" type="tns:customer"/>
+          <xs:element minOccurs="0" name="card" type="tns:card"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="customer">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="card" type="tns:card"/>
+          <xs:element maxOccurs="unbounded" minOccurs="0" name="cart" nillable="true" type="tns:orderItem"/>
+          <xs:element maxOccurs="unbounded" minOccurs="0" name="cartCard" nillable="true" type="tns:cardItem"/>
+          <xs:element maxOccurs="unbounded" minOccurs="0" name="cartPass" nillable="true" type="tns:passItem"/>
+          <xs:element minOccurs="0" name="creditCard" type="xs:string"/>
+          <xs:element minOccurs="0" name="email" type="xs:string"/>
+          <xs:element minOccurs="0" name="id" type="xs:string"/>
+          <xs:element minOccurs="0" name="name" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="card">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="cardType" type="tns:cardType"/>
+          <xs:element minOccurs="0" name="endDate" type="tns:dateSerializable"/>
+          <xs:element minOccurs="0" name="id" type="xs:string"/>
+          <xs:element minOccurs="0" name="owner" type="tns:customer"/>
+          <xs:element minOccurs="0" name="pass" type="tns:pass"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="dateSerializable">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="date" type="tns:localDateTime"/>
+          <xs:element name="dayOfMonth" type="xs:int"/>
+          <xs:element name="hour" type="xs:int"/>
+          <xs:element name="minute" type="xs:int"/>
+          <xs:element name="month" type="xs:int"/>
+          <xs:element name="year" type="xs:int"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType final="extension restriction" name="localDateTime">
+        <xs:sequence/>
+      </xs:complexType>
+      <xs:complexType name="pass">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="end" type="tns:dateSerializable"/>
+          <xs:element minOccurs="0" name="id" type="xs:string"/>
+          <xs:element minOccurs="0" name="passType" type="tns:passType"/>
+          <xs:element minOccurs="0" name="personType" type="tns:personType"/>
+          <xs:element minOccurs="0" name="start" type="tns:dateSerializable"/>
+          <xs:element maxOccurs="unbounded" minOccurs="0" name="zones" nillable="true" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="orderItem">
+        <xs:sequence>
+          <xs:element name="available" type="xs:boolean"/>
+          <xs:element name="price" type="xs:double"/>
+          <xs:element name="quantity" type="xs:int"/>
+          <xs:element minOccurs="0" name="type" type="tns:itemType"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="cardItem">
+        <xs:complexContent>
+          <xs:extension base="tns:orderItem">
+            <xs:sequence>
+              <xs:element minOccurs="0" name="cardType" type="tns:cardType"/>
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="passItem">
+        <xs:complexContent>
+          <xs:extension base="tns:orderItem">
+            <xs:sequence>
+              <xs:element minOccurs="0" name="cardLinkId" type="xs:string"/>
+              <xs:element minOccurs="0" name="end" type="tns:dateSerializable"/>
+              <xs:element minOccurs="0" name="passType" type="tns:passType"/>
+              <xs:element minOccurs="0" name="personType" type="tns:personType"/>
+              <xs:element minOccurs="0" name="start" type="tns:dateSerializable"/>
+              <xs:element minOccurs="0" name="zones" type="xs:string"/>
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="associateCardToCustomerResponse">
+        <xs:sequence/>
+      </xs:complexType>
+      <xs:simpleType name="cardType">
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="CARTEX"/>
+          <xs:enumeration value="SUPERCARTEX"/>
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:simpleType name="passType">
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="CLASSIC"/>
+          <xs:enumeration value="WEEK"/>
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:simpleType name="personType">
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="ADULT"/>
+          <xs:enumeration value="CHILD"/>
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:simpleType name="itemType">
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="CARD"/>
+          <xs:enumeration value="PASS"/>
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:element name="AlreadyExistingCustomerException" type="tns:AlreadyExistingCustomerException"/>
+      <xs:complexType name="AlreadyExistingCustomerException">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="conflictingName" type="xs:string"/>
+          <xs:element minOccurs="0" name="message" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="AlreadyAssociatedCard" type="tns:AlreadyAssociatedCard"/>
+      <xs:complexType name="AlreadyAssociatedCard">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="message" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+    </xs:schema>
+  </wsdl:types>
+  <wsdl:message name="AlreadyExistingCustomerException">
+    <wsdl:part element="tns:AlreadyExistingCustomerException" name="AlreadyExistingCustomerException"> </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="associateCardToCustomer">
+    <wsdl:part element="tns:associateCardToCustomer" name="parameters"> </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="AlreadyAssociatedCard">
+    <wsdl:part element="tns:AlreadyAssociatedCard" name="AlreadyAssociatedCard"> </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="registerCustomer">
+    <wsdl:part element="tns:registerCustomer" name="parameters"> </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="associateCardToCustomerResponse">
+    <wsdl:part element="tns:associateCardToCustomerResponse" name="parameters"> </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="registerCustomerResponse">
+    <wsdl:part element="tns:registerCustomerResponse" name="parameters"> </wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="CustomerWebService">
+    <wsdl:operation name="registerCustomer">
+      <wsdl:input message="tns:registerCustomer" name="registerCustomer"> </wsdl:input>
+      <wsdl:output message="tns:registerCustomerResponse" name="registerCustomerResponse"> </wsdl:output>
+      <wsdl:fault message="tns:AlreadyExistingCustomerException" name="AlreadyExistingCustomerException"> </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="associateCardToCustomer">
+      <wsdl:input message="tns:associateCardToCustomer" name="associateCardToCustomer"> </wsdl:input>
+      <wsdl:output message="tns:associateCardToCustomerResponse" name="associateCardToCustomerResponse"> </wsdl:output>
+      <wsdl:fault message="tns:AlreadyAssociatedCard" name="AlreadyAssociatedCard"> </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="CustomerWebServiceImplServiceSoapBinding" type="tns:CustomerWebService">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="registerCustomer">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="registerCustomer">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="registerCustomerResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="AlreadyExistingCustomerException">
+        <soap:fault name="AlreadyExistingCustomerException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="associateCardToCustomer">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="associateCardToCustomer">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="associateCardToCustomerResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="AlreadyAssociatedCard">
+        <soap:fault name="AlreadyAssociatedCard" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="CustomerWebServiceImplService">
+    <wsdl:port binding="tns:CustomerWebServiceImplServiceSoapBinding" name="CustomerWebServiceImplPort">
+      <soap:address location="http://localhost:8080/webservices-module/webservices/CustomerWS"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

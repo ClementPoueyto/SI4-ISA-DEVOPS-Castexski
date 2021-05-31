@@ -1,0 +1,36 @@
+[submodule "j2e/team-c-alert"]
+	path = j2e/team-c-alert
+	url = git@github.com:pns-isa-devops/team-c-alert.git
+	branch = main
+[submodule "j2e/team-c-analytics"]
+	path = j2e/team-c-analytics
+	url = git@github.com:pns-isa-devops/team-c-analytics.git
+	branch = main
+[submodule "j2e/team-c-card"]
+    path = j2e/team-c-card
+    url = git@github.com:pns-isa-devops/team-c-card.git
+    branch = main
+[submodule "j2e/team-c-cart"]
+	path = j2e/team-c-cart
+	url = git@github.com:pns-isa-devops/team-c-cart.git
+	branch = main
+[submodule "j2e/team-c-cashier"]
+	path = j2e/team-c-cashier
+	url = git@github.com:pns-isa-devops/team-c-cashier.git
+	branch = main
+[submodule "j2e/team-c-customer"]
+	path = j2e/team-c-customer
+	url = git@github.com:pns-isa-devops/team-c-customer.git
+	branch = main
+[submodule "j2e/team-c-employee"]
+	path = j2e/team-c-employee
+	url = git@github.com:pns-isa-devops/team-c-employee.git
+	branch = main
+[submodule "j2e/team-c-entities"]
+	path = j2e/team-c-entities
+	url = git@github.com:pns-isa-devops/team-c-entities.git
+	branch = main
+[submodule "j2e/team-c-gate"]
+	path = j2e/team-c-gate
+	url = git@github.com:pns-isa-devops/team-c-gate.git
+	branch = main

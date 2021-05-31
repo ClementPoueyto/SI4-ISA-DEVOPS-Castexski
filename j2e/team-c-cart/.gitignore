@@ -1,0 +1,7 @@
+# Maven
+target/*
+
+
+# JetBrains IDEs
+.idea/
+*.iml

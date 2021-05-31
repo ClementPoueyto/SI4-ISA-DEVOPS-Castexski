@@ -1,0 +1,291 @@
+<wsdl:definitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://www.polytech.unice.fr/castexski/employee" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:ns1="http://schemas.xmlsoap.org/soap/http" name="EmployeeWebServiceImplService" targetNamespace="http://www.polytech.unice.fr/castexski/employee">
+  <wsdl:types>
+    <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://www.polytech.unice.fr/castexski/employee" attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="http://www.polytech.unice.fr/castexski/employee">
+      <xs:element name="addANewScreen" type="tns:addANewScreen"/>
+      <xs:element name="addANewScreenResponse" type="tns:addANewScreenResponse"/>
+      <xs:element name="addGate" type="tns:addGate"/>
+      <xs:element name="addGateResponse" type="tns:addGateResponse"/>
+      <xs:element name="addSkilift" type="tns:addSkilift"/>
+      <xs:element name="addSkiliftResponse" type="tns:addSkiliftResponse"/>
+      <xs:element name="addZone" type="tns:addZone"/>
+      <xs:element name="addZoneResponse" type="tns:addZoneResponse"/>
+      <xs:element name="diplayMessageOnZonesScreens" type="tns:diplayMessageOnZonesScreens"/>
+      <xs:element name="diplayMessageOnZonesScreensResponse" type="tns:diplayMessageOnZonesScreensResponse"/>
+      <xs:element name="displayMessageOnScreens" type="tns:displayMessageOnScreens"/>
+      <xs:element name="displayMessageOnScreensResponse" type="tns:displayMessageOnScreensResponse"/>
+      <xs:complexType name="addANewScreen">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="arg0" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="addANewScreenResponse">
+        <xs:sequence/>
+      </xs:complexType>
+      <xs:complexType name="addGate">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="physical_id" type="xs:string"/>
+          <xs:element minOccurs="0" name="skilift_name" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="addGateResponse">
+        <xs:sequence/>
+      </xs:complexType>
+      <xs:complexType name="diplayMessageOnZonesScreens">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="arg0" type="xs:string"/>
+          <xs:element maxOccurs="unbounded" minOccurs="0" name="arg1" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="diplayMessageOnZonesScreensResponse">
+        <xs:sequence/>
+      </xs:complexType>
+      <xs:complexType name="addSkilift">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="skilift_name" type="xs:string"/>
+          <xs:element minOccurs="0" name="zone_name" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="addSkiliftResponse">
+        <xs:sequence/>
+      </xs:complexType>
+      <xs:complexType name="addZone">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="zone_name" type="xs:string"/>
+          <xs:element minOccurs="0" name="station_name" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="addZoneResponse">
+        <xs:sequence/>
+      </xs:complexType>
+      <xs:complexType name="displayMessageOnScreens">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="arg0" type="xs:string"/>
+          <xs:element maxOccurs="unbounded" minOccurs="0" name="arg1" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="displayMessageOnScreensResponse">
+        <xs:sequence/>
+      </xs:complexType>
+      <xs:element name="ZoneNameNotFoundException" type="tns:ZoneNameNotFoundException"/>
+      <xs:complexType name="ZoneNameNotFoundException">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="message" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="UnknownSkiliftException" type="tns:UnknownSkiliftException"/>
+      <xs:complexType name="UnknownSkiliftException">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="message" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="AlreadyExistingGateException" type="tns:AlreadyExistingGateException"/>
+      <xs:complexType name="AlreadyExistingGateException">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="message" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="AlreadyExistingSkiliftException" type="tns:AlreadyExistingSkiliftException"/>
+      <xs:complexType name="AlreadyExistingSkiliftException">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="message" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="UnknownZoneException" type="tns:UnknownZoneException"/>
+      <xs:complexType name="UnknownZoneException">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="message" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="AlreadyExistingZoneException" type="tns:AlreadyExistingZoneException"/>
+      <xs:complexType name="AlreadyExistingZoneException">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="conflictingName" type="xs:string"/>
+          <xs:element minOccurs="0" name="message" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="ZoneIdNotFoundException" type="tns:ZoneIdNotFoundException"/>
+      <xs:complexType name="ZoneIdNotFoundException">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="message" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+    </xs:schema>
+  </wsdl:types>
+  <wsdl:message name="addANewScreen">
+    <wsdl:part element="tns:addANewScreen" name="parameters"> </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="addGate">
+    <wsdl:part element="tns:addGate" name="parameters"> </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="diplayMessageOnZonesScreens">
+    <wsdl:part element="tns:diplayMessageOnZonesScreens" name="parameters"> </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="addANewScreenResponse">
+    <wsdl:part element="tns:addANewScreenResponse" name="parameters"> </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="ZoneNameNotFoundException">
+    <wsdl:part element="tns:ZoneNameNotFoundException" name="ZoneNameNotFoundException"> </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="ZoneIdNotFoundException">
+    <wsdl:part element="tns:ZoneIdNotFoundException" name="ZoneIdNotFoundException"> </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="addSkilift">
+    <wsdl:part element="tns:addSkilift" name="parameters"> </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="addZone">
+    <wsdl:part element="tns:addZone" name="parameters"> </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="displayMessageOnScreensResponse">
+    <wsdl:part element="tns:displayMessageOnScreensResponse" name="parameters"> </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="UnknownSkiliftException">
+    <wsdl:part element="tns:UnknownSkiliftException" name="UnknownSkiliftException"> </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="addSkiliftResponse">
+    <wsdl:part element="tns:addSkiliftResponse" name="parameters"> </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="AlreadyExistingSkiliftException">
+    <wsdl:part element="tns:AlreadyExistingSkiliftException" name="AlreadyExistingSkiliftException"> </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="addZoneResponse">
+    <wsdl:part element="tns:addZoneResponse" name="parameters"> </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="AlreadyExistingGateException">
+    <wsdl:part element="tns:AlreadyExistingGateException" name="AlreadyExistingGateException"> </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="UnknownZoneException">
+    <wsdl:part element="tns:UnknownZoneException" name="UnknownZoneException"> </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="AlreadyExistingZoneException">
+    <wsdl:part element="tns:AlreadyExistingZoneException" name="AlreadyExistingZoneException"> </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="diplayMessageOnZonesScreensResponse">
+    <wsdl:part element="tns:diplayMessageOnZonesScreensResponse" name="parameters"> </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="displayMessageOnScreens">
+    <wsdl:part element="tns:displayMessageOnScreens" name="parameters"> </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="addGateResponse">
+    <wsdl:part element="tns:addGateResponse" name="parameters"> </wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="EmployeeWebService">
+    <wsdl:operation name="addANewScreen">
+      <wsdl:input message="tns:addANewScreen" name="addANewScreen"> </wsdl:input>
+      <wsdl:output message="tns:addANewScreenResponse" name="addANewScreenResponse"> </wsdl:output>
+      <wsdl:fault message="tns:ZoneNameNotFoundException" name="ZoneNameNotFoundException"> </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="addGate">
+      <wsdl:input message="tns:addGate" name="addGate"> </wsdl:input>
+      <wsdl:output message="tns:addGateResponse" name="addGateResponse"> </wsdl:output>
+      <wsdl:fault message="tns:UnknownSkiliftException" name="UnknownSkiliftException"> </wsdl:fault>
+      <wsdl:fault message="tns:AlreadyExistingGateException" name="AlreadyExistingGateException"> </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="diplayMessageOnZonesScreens">
+      <wsdl:input message="tns:diplayMessageOnZonesScreens" name="diplayMessageOnZonesScreens"> </wsdl:input>
+      <wsdl:output message="tns:diplayMessageOnZonesScreensResponse" name="diplayMessageOnZonesScreensResponse"> </wsdl:output>
+      <wsdl:fault message="tns:ZoneNameNotFoundException" name="ZoneNameNotFoundException"> </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="addSkilift">
+      <wsdl:input message="tns:addSkilift" name="addSkilift"> </wsdl:input>
+      <wsdl:output message="tns:addSkiliftResponse" name="addSkiliftResponse"> </wsdl:output>
+      <wsdl:fault message="tns:UnknownZoneException" name="UnknownZoneException"> </wsdl:fault>
+      <wsdl:fault message="tns:AlreadyExistingSkiliftException" name="AlreadyExistingSkiliftException"> </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="addZone">
+      <wsdl:input message="tns:addZone" name="addZone"> </wsdl:input>
+      <wsdl:output message="tns:addZoneResponse" name="addZoneResponse"> </wsdl:output>
+      <wsdl:fault message="tns:AlreadyExistingZoneException" name="AlreadyExistingZoneException"> </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="displayMessageOnScreens">
+      <wsdl:input message="tns:displayMessageOnScreens" name="displayMessageOnScreens"> </wsdl:input>
+      <wsdl:output message="tns:displayMessageOnScreensResponse" name="displayMessageOnScreensResponse"> </wsdl:output>
+      <wsdl:fault message="tns:ZoneIdNotFoundException" name="ZoneIdNotFoundException"> </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="EmployeeWebServiceImplServiceSoapBinding" type="tns:EmployeeWebService">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="addANewScreen">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="addANewScreen">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="addANewScreenResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="ZoneNameNotFoundException">
+        <soap:fault name="ZoneNameNotFoundException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="addGate">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="addGate">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="addGateResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="UnknownSkiliftException">
+        <soap:fault name="UnknownSkiliftException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="AlreadyExistingGateException">
+        <soap:fault name="AlreadyExistingGateException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="diplayMessageOnZonesScreens">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="diplayMessageOnZonesScreens">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="diplayMessageOnZonesScreensResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="ZoneNameNotFoundException">
+        <soap:fault name="ZoneNameNotFoundException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="addSkilift">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="addSkilift">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="addSkiliftResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="UnknownZoneException">
+        <soap:fault name="UnknownZoneException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="AlreadyExistingSkiliftException">
+        <soap:fault name="AlreadyExistingSkiliftException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="addZone">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="addZone">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="addZoneResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="AlreadyExistingZoneException">
+        <soap:fault name="AlreadyExistingZoneException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="displayMessageOnScreens">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="displayMessageOnScreens">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="displayMessageOnScreensResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="ZoneIdNotFoundException">
+        <soap:fault name="ZoneIdNotFoundException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="EmployeeWebServiceImplService">
+    <wsdl:port binding="tns:EmployeeWebServiceImplServiceSoapBinding" name="EmployeeWebServiceImplPort">
+      <soap:address location="http://localhost:8080/webservices-module/webservices/EmployeeWS"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <artifactId>castexski</artifactId>
+        <groupId>fr.unice.polytech</groupId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+
+    <groupId>fr.unice.polytech.team-c-cart</groupId>
+    <artifactId>team-c-cart</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <name>team-c-cart</name>
+    <packaging>ejb</packaging>
+
+    
+    <repositories>
+        <repository>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+            <id>team-c-customer</id>
+            <name>team-c-customer</name>
+            <url>http://134.59.213.133/artifactory/team-c-customer</url>
+        </repository>
+        <repository>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+            <id>team-c-cashier</id>
+            <name>team-c-cashier</name>
+            <url>http://134.59.213.133/artifactory/team-c-cashier</url>
+        </repository>
+        <repository>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+            <id>team-c-entities</id>
+            <name>team-c-entities</name>
+            <url>http://134.59.213.133/artifactory/team-c-entities</url>
+        </repository>
+        <repository>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+            <id>castexski</id>
+            <name>castexski</name>
+            <url>http://134.59.213.133/artifactory/castexski</url>
+        </repository>
+    </repositories>
+
+    <dependencies>
+        <!-- Dependencies to project's modules -->
+        <dependency>
+            <groupId>fr.unice.polytech.team-c-entities</groupId>
+            <artifactId>team-c-entities</artifactId>
+            <version>1.0-SNAPSHOT</version>
+            <type>ejb</type>
+        </dependency>
+        <dependency>
+            <groupId>fr.unice.polytech.team-c-customer</groupId>
+            <artifactId>team-c-customer</artifactId>
+            <version>1.0-SNAPSHOT</version>
+            <type>ejb</type>
+        </dependency>
+        <dependency>
+            <groupId>fr.unice.polytech.team-c-cashier</groupId>
+            <artifactId>team-c-cashier</artifactId>
+            <version>1.0-SNAPSHOT</version>
+            <type>ejb</type>
+        </dependency>
+        <dependency>
+            <groupId>fr.unice.polytech.team-c-analytics</groupId>
+            <artifactId>team-c-analytics</artifactId>
+            <version>1.0-SNAPSHOT</version>
+            <type>ejb</type>
+        </dependency>
+    </dependencies>
+    
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-ejb-plugin</artifactId>
+                <configuration>
+                    <ejbVersion>3.0</ejbVersion>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>${versions.maven.compiler}</version>
+                <configuration>
+                    <source>${versions.java}</source>
+                    <target>${versions.java}</target>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-ejb-plugin</artifactId>
+                <configuration>
+                    <ejbVersion>3.0</ejbVersion>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.tomee.maven</groupId>
+                <artifactId>tomee-maven-plugin</artifactId>
+                <version>${versions.tomee}</version>
+                <configuration>
+                    <!-- From TomEE to TomEE+ to support the web services stack -->
+                    <tomeeClassifier>plus</tomeeClassifier>
+                    <args>-Xmx512m -XX:PermSize=256m</args>
+                    <deployOpenEjbApplication>true</deployOpenEjbApplication>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+    <distributionManagement>
+        <repository>
+            <id>team-c-cart</id>
+            <name>de92c182b34a-releases</name>
+            <url>http://134.59.213.133/artifactory/team-c-cart</url>
+        </repository>
+        <snapshotRepository>
+            <id>team-c-cart</id>
+            <name>de92c182b34a-snapshots</name>
+            <url>http://134.59.213.133/artifactory/team-c-cart</url>
+        </snapshotRepository>
+    </distributionManagement>
+
+
+</project>

@@ -1,0 +1,15 @@
+version: '3'
+
+services:
+  weather-api:
+    image: "antoinefacq/weather:latest"
+    ports:
+      - "9091:9091"
+    stdin_open: true # docker run -i
+    tty: true        # docker run -t
+  bank-api:
+    image: "antoinefacq/bank:latest"
+    ports:
+      - "9090:9090"
+    stdin_open: true # docker run -i
+    tty: true        # docker run -t

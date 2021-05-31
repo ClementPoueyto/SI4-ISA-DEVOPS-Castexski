@@ -1,0 +1,16 @@
+FROM maven:latest as builder
+COPY ./* /home/app/
+COPY pom.xml /home/app
+WORKDIR /home/app
+RUN mvn clean package
+
+#
+# Package stage
+#
+FROM openjdk:8-jre-slim
+WORKDIR /home/app
+RUN ls -al
+COPY --from=builder /home/app/team-c-webservices/target/ .
+
+EXPOSE 8080
+ENTRYPOINT ["java", "-war", "/home/app/webservices-module.war"]

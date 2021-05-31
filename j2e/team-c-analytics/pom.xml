@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <artifactId>castexski</artifactId>
+        <groupId>fr.unice.polytech</groupId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+
+    <groupId>fr.unice.polytech.team-c-analytics</groupId>
+    <artifactId>team-c-analytics</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <name>team-c-analytics</name>
+    <packaging>ejb</packaging>
+
+    
+    <dependencies>
+        <dependency>
+            <groupId>fr.unice.polytech.team-c-entities</groupId>
+            <artifactId>team-c-entities</artifactId>
+            <version>1.0-SNAPSHOT</version>
+            <scope>compile</scope>
+        </dependency>
+    </dependencies>
+
+    <repositories>
+        <repository>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+            <id>team-c-entities</id>
+            <name>team-c-entities</name>
+            <url>http://134.59.213.133/artifactory/team-c-entities</url>
+        </repository>
+        <repository>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+            <id>castexski</id>
+            <name>castexski</name>
+            <url>http://134.59.213.133/artifactory/castexski</url>
+        </repository>
+    </repositories>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>8</source>
+                    <target>8</target>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-ejb-plugin</artifactId>
+                <configuration>
+                    <ejbVersion>3.0</ejbVersion>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+        <distributionManagement>
+        <repository>
+            <id>team-c-analytics</id>
+            <name>de92c182b34a-releases</name>
+            <url>http://134.59.213.133/artifactory/team-c-analytics</url>
+        </repository>
+        <snapshotRepository>
+            <id>team-c-analytics</id>
+            <name>de92c182b34a-snapshots</name>
+            <url>http://134.59.213.133/artifactory/team-c-analytics</url>
+        </snapshotRepository>
+    </distributionManagement>
+
+
+</project>

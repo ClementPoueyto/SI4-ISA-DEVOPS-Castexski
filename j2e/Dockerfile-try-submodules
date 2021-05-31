@@ -1,0 +1,53 @@
+# cache as most as possible in this multistage dockerfile.
+FROM maven:3.6-alpine as DEPS
+
+WORKDIR /opt/app
+COPY team-c-alert/pom.xml team-c-alert/pom.xml
+COPY team-c-webservices/pom.xml team-c-webservices/pom.xml
+COPY team-c-card/pom.xml team-c-card/pom.xml
+COPY team-c-cart/pom.xml team-c-cart/pom.xml
+COPY team-c-cashier/pom.xml team-c-cashier/pom.xml
+COPY team-c-customer/pom.xml team-c-customer/pom.xml
+COPY team-c-entities/pom.xml team-c-entities/pom.xml
+COPY team-c-employee/pom.xml team-c-employee/pom.xml
+COPY team-c-analytics/pom.xml team-c-analytics/pom.xml
+COPY team-c-gate/pom.xml team-c-cashier/pom.xml
+
+# you get the idea:
+# COPY moduleN/pom.xml moduleN/pom.xml
+
+COPY pom.xml .
+RUN mvn -B -e -C org.apache.maven.plugins:maven-dependency-plugin:3.1.2:go-offline
+
+# if you have modules that depends each other, you may use -DexcludeArtifactIds as follows
+# RUN mvn -B -e -C org.apache.maven.plugins:maven-dependency-plugin:3.1.2:go-offline -DexcludeArtifactIds=module1
+
+# Copy the dependencies from the DEPS stage with the advantage
+# of using docker layer caches. If something goes wrong from this
+# line on, all dependencies from DEPS were already downloaded and
+# stored in docker's layers.
+FROM maven:3.6-alpine as BUILDER
+WORKDIR /opt/app
+COPY --from=deps /root/.m2 /root/.m2
+COPY --from=deps /opt/app/ /opt/app
+COPY team-c-alert/src /opt/app/team-c-alert/src
+COPY team-c-webservices/src /opt/app/team-c-webservices/src
+COPY team-c-card/src /opt/app/team-c-card/src
+COPY team-c-cart/src /opt/app/team-c-cart/src
+COPY team-c-cashier/src /opt/app/team-c-cashier/src
+COPY team-c-customer/src /opt/app/team-c-customer/src
+COPY team-c-entities/src /opt/app/team-c-entities/src
+COPY team-c-employee/src /opt/app/team-c-employee/src
+COPY team-c-analytics/src /opt/app/team-c-analytics/src
+COPY team-c-gate/src /opt/app/team-c-cashier/src
+
+# use -o (--offline) if you didn't need to exclude artifacts.
+# if you have excluded artifacts, then remove -o flag
+RUN mvn -B -e clean install -DskipTests=true
+
+# At this point, BUILDER stage should have your .jar or whatever in some path
+FROM openjdk:8-alpine
+WORKDIR /opt/app
+COPY --from=builder /opt/app/team-c-webservices/target/webservices-module-classes.jar .
+EXPOSE 8080
+CMD [ "java", "-war", "/opt/app/webservices-module-classes.jar" ]

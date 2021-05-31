@@ -1,0 +1,43 @@
+version: '3'
+
+services:
+  weather-api:
+    image: "polytechteamc/castexski:teamc_weather"
+    ports:
+      - "9091:9091"
+    stdin_open: true # docker run -i
+    tty: true 
+    networks:
+      app_net:
+        ipv4_address: 172.16.238.9
+
+  bank-api:
+    image: "polytechteamc/castexski:teamc_bank"
+    ports:
+      - "9090:9090"
+    stdin_open: true # docker run -i
+    tty: true        # docker run -t
+    networks:
+      app_net:
+        ipv4_address: 172.16.238.10
+
+  j2e:
+    image: "polytechteamc/castexski:teamc_j2e"
+    ports:
+      - "8080:8080"
+    stdin_open: true # docker run -i
+    tty: true        # docker run -t
+    networks:
+      app_net:
+        ipv4_address: 172.16.238.11
+
+networks:
+  app_net:
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+        - subnet: 172.16.238.0/24
+          gateway: 172.16.238.1
+
+# -v /var/run/docker.sock:/var/run/docker.sock \

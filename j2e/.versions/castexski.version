@@ -1,0 +1,12 @@
+Versions of submodules: \n
+team-c-alert.version        : ../team-c-alert/.versions/team-c-alert.version
+team-c-cart.version         : ../team-c-cart/.versions/team-c-cart.version
+team-c-cashier.version      : ../team-c-cashier/.versions/team-c-cashier.version
+team-c-customer.version     : ../team-c-customer/.versions/team-c-customer.version
+team-c-employee.version     : ../team-c-employee/.versions/team-c-employee.version
+team-c-entities.version     : ../team-c-entities/.versions/team-c-entities.version
+team-c-gate.version         : ../team-c-gate/.versions/team-c-gate.version
+team-c-webservices.version  : ../team-c-webservices/.versions/team-c-webservices.version
+
+Version of castexski/j2e project: 
+castexski/j2e               : 0.1.9
