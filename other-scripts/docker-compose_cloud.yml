@@ -39,5 +39,3 @@ networks:
       config:
         - subnet: 172.16.238.0/24
           gateway: 172.16.238.1
-
-# -v /var/run/docker.sock:/var/run/docker.sock \

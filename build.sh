@@ -17,6 +17,7 @@ cd ..
 
 echo "[INFO] build.sh : #############        client        #############"
 cd client
+export TEAMC_IP="localhost" #export the ip for j2e
 echo "[INFO] build.sh : Compiling client..."
 echo "[INFO] build.sh : Tests are avoided if services are not available."
 mvn clean package -DskipTests

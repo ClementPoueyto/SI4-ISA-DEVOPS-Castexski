@@ -1,4 +1,11 @@
 echo "[INFO] dotNet : Going to compile dotNet services..."
+echo "[INFO] dotNet : Updating dependencies..."
+sudo apt-get update -y
+echo "[INFO] dotNet : Dependencies update done."
+echo "[INFO] dotNet : Installing mono-mcs..."
+sudo apt-get install -y mono-mcs
+echo "[INFO] dotNet : mono-mcs intallation done."
+
 cd bank/
 echo "[INFO] dotNet : Compiling bank service..."
 ./compile.sh

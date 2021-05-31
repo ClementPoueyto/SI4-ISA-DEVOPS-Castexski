@@ -7,11 +7,6 @@
   * Alexandre Mazurier
   * Clément Poueyto
 
-  ### State
-  
-  * Version: under development
-  * Continuous integration status: [![Java CI with Maven](https://github.com/pns-isa-devops/isa-devops-2021-team-c-2021/actions/workflows/blank.yml/badge.svg?branch=develop)](https://github.com/pns-isa-devops/isa-devops-2021-team-c-2021/actions/workflows/blank.yml)
-
 
 
 This demonstration code requires the following software to run properly:
@@ -23,8 +18,16 @@ This demonstration code requires the following software to run properly:
 
 ## Product vision
 
-(voir docs)
+[Rapport final](https://github.com/pns-isa-devops/isa-devops-2021-team-c-2021/blob/master/finalreport-teamC.pdf)
 
+## Point distribution
+
+As we work all together during this project, we give each member the same amount of points:
+  * Loïc Bertolotto : 100
+  * Antoine Facq : 100
+  * Maëva Lecavelier : 100
+  * Alexandre Mazurier : 100
+  * Clément Poueyto : 100
 
 __Technical Information__:
 
@@ -32,7 +35,7 @@ __Technical Information__:
 ## How to use this repository
   
   * The `develop` branch (the default one) represents the system under development. 
-   ( Inserer branching strategy )
+  * To launch tests in local for the client, you must export an environments variable : `export TEAMC_IP="localhost"`
 
 ### Compilation & Execution
 

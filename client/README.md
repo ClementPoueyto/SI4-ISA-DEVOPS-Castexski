@@ -1,7 +1,8 @@
 ## Start Client
-
+    export TEAMC_IP="localhost"
     mvn clean package
     mvn exec:java
+
 
 ## Construction d'une station
 1. Ajouter des zones :
@@ -78,4 +79,36 @@
     add-pass denis@me.com 1 classic 201 full_day 1 2021-05-06 adult bas_station
     checkout denis@me.com
     passage 201 M1
+    
+## Demo 1
+    pass-analytics 07 05 2021
+    visit-analytics 07 05 2021
+    add-zone snow_park
+    add-skilift ride snow_park
+    add-gate R1 ride
+    register kevin@duchamps.fr Kevin 896983
+    add-card kevin@duchamps.fr 1 cartex
+    checkout kevin@duchamps.fr
+    add-pass kevin@duchamps.fr 1 classic 201 full_day 2 2021-05-06 adult snow_park
+    checkout kevin@duchamps.fr
+    passage 201 R1
+    passage 201 R1
+    pass-analytics 07 05 2021
+    visit-analytics 07 05 2021
+    
+## Demo 2
+    pass-analytics 07 05 2021
+    visit-analytics 07 05 2021
+    add-zone ski_park
+    add-skilift chevreau ski_park
+    add-gate C1 chevreau
+    register titi@hotmal.fr Titi 896983
+    add-card titi@hotmal.fr 1 cartex
+    checkout titi@hotmal.fr
+    add-pass titi@hotmal.fr1 classic 201 full_day 2 2021-05-06 adult ski_park
+    checkout titi@hotmal.fr
+    passage 201 C1
+    passage 201 C1
+    pass-analytics 07 05 2021
+    visit-analytics 07 05 2021
 

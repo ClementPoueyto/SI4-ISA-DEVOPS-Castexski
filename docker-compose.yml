@@ -1,27 +1,3 @@
-#version: '3'
-#
-#services:
-#  weather-api:
-#    image: "teamc_weather"
-#    ports:
-#      - "9091:9091"
-#    stdin_open: true # docker run -i
-#    tty: true        # docker run -t
-#  bank-api:
-#    image: "teamc_bank"
-#    ports:
-#      - "9090:9090"
-#    stdin_open: true # docker run -i
-#    tty: true        # docker run -t
-#  j2e:
-#    image: "teamc_j2e"
-#    ports:
-#      - "8080:8080"
-#    stdin_open: true # docker run -i
-#    tty: true        # docker run -t
-#
-#
-
 version: '3'
 
 services:
@@ -31,6 +7,10 @@ services:
       - "9091:9091"
     stdin_open: true # docker run -i
     tty: true        # docker run -t
+    networks:
+      app_net:
+        ipv4_address: 172.16.238.9
+
   bank-api:
     image: "polytechteamc/castexski:teamc_bank"
     ports:
@@ -40,8 +20,9 @@ services:
     networks:
       app_net:
         ipv4_address: 172.16.238.10
+        
   j2e:
-    image: "teamc_j2e"
+    image: "polytechteamc/castexski:teamc_j2e"
     ports:
       - "8080:8080"
     stdin_open: true # docker run -i
